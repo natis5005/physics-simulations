@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" fx:id="pane" prefHeight="807.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="finalprojectyna.LorentzForce">
+   <children>
+      <VBox fx:id="mainLayot" prefHeight="800.0" prefWidth="1200.0">
+         <children>
+            <Pane fx:id="topSimulation" prefHeight="400.0" prefWidth="1200.0" style="-fx-border-color: 2;">
+               <children>
+                  <ImageView fx:id="backgroundSimulation" fitHeight="400.0" fitWidth="1200.0" pickOnBounds="true" smooth="false">
+                     <image>
+                        <Image url="@../../assets/images/lorentzforceBackground.jpg" />
+                     </image>
+                  </ImageView>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0669c5" height="30.0" layoutX="50.0" layoutY="370.0" stroke="BLACK" strokeType="INSIDE" width="850.0" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0669c5" height="30.0" layoutX="50.0" stroke="BLACK" strokeType="INSIDE" width="850.0" />
+                  <ImageView fx:id="ElectricForceDirection" fitHeight="350.0" fitWidth="338.0" layoutX="530.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../assets/images/arrowLorentz.png" />
+                     </image>
+                  </ImageView>
+                  <Text layoutX="637.0" layoutY="163.0" stroke="WHITE" strokeType="OUTSIDE" text="Electric Force direction" wrappingWidth="123.88476133346558" />
+                  <ImageView fx:id="MagneticForceDirection" fitHeight="350.0" fitWidth="338.0" layoutX="174.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+                     <image>
+                        <Image url="@../../assets/images/arrowLorentz.png" />
+                     </image>
+                  </ImageView>
+                  <Text layoutX="286.0" layoutY="223.0" stroke="WHITE" strokeType="OUTSIDE" text="Magnetic Force direction" wrappingWidth="136.50781559944153" />
+                  <ImageView fx:id="VelocityDirection" fitHeight="100.0" fitWidth="82.0" layoutX="59.0" layoutY="150.0" pickOnBounds="true" rotate="90.0" smooth="false">
+                     <image>
+                        <Image url="@../../assets/images/arrowLorentz.png" />
+                     </image>
+                  </ImageView>
+                  <Text layoutX="68.0" layoutY="206.0" stroke="WHITE" strokeType="OUTSIDE" text="Velocity in x " wrappingWidth="136.50781559944153" />
+                  <Circle fx:id="c" layoutX="40.0" layoutY="200.0" radius="10.0" smooth="false" stroke="BLACK" strokeType="INSIDE" strokeWidth="50.0">
+                     <fill>
+                        <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                           <stops>
+                              <Stop color="BLACK" />
+                              <Stop color="#ff2121" offset="1.0" />
+                           </stops>
+                        </RadialGradient>
+                     </fill>
+                  </Circle>
+               </children>
+            </Pane>
+            <HBox fx:id="middleBox" prefHeight="300.0" prefWidth="1200.0">
+               <children>
+                  <Pane fx:id="inputPane" prefHeight="245.0" prefWidth="600.0">
+                     <children>
+                        <Label layoutX="13.0" layoutY="19.0" text="Constant Magnetic field range from 0-5T" />
+                        <Label layoutX="58.0" layoutY="60.0" text="Voltage from 0 -125V" />
+                        <Label layoutX="15.0" layoutY="102.0" text="Initial Velocity x direction 0 - 5m/s" />
+                        <TextField fx:id="VelocityXinput" layoutX="241.0" layoutY="98.0" text="5" />
+                        <Button fx:id="startButton" layoutX="145.0" layoutY="202.0" mnemonicParsing="false" onAction="#start" text="Start" />
+                        <Button fx:id="pauseButton" layoutX="186.0" layoutY="202.0" mnemonicParsing="false" onAction="#Stop" text="Pause" />
+                        <Button fx:id="resetButton" layoutX="231.0" layoutY="202.0" mnemonicParsing="false" onAction="#RESET" text="Reset" />
+                        <Button fx:id="exitButton" layoutX="317.0" layoutY="202.0" mnemonicParsing="false" onAction="#handleExit" text="Exit" />
+                        <Button fx:id="helpButton" layoutX="276.0" layoutY="202.0" mnemonicParsing="false" onAction="#Help" text="Help" />
+                        <Label layoutX="15.0" layoutY="235.0" text="As the Voltage increases the Lorents force becomes bigger " />
+                        <Label layoutX="48.0" layoutY="269.0" text="Formulas" />
+                        <Label layoutX="109.0" layoutY="269.0" prefHeight="17.0" prefWidth="399.0" text="F=q*(E+(v*B)) = 0  // E = (Voltage/(5m))  //distance between plates =5m" />
+                        <Text layoutX="266.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Constant magnetic field pointing outwards" />
+                        <ImageView fx:id="MagneticFieldDirection" fitHeight="25.0" fitWidth="47.0" layoutX="241.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../assets/images/pointingOutLorentz.png" />
+                           </image>
+                        </ImageView>
+                        <Slider fx:id="ConstantMagneticField" blockIncrement="1.0" layoutX="242.0" layoutY="19.0" majorTickUnit="1.0" max="5.0" minorTickCount="1" prefHeight="40.0" prefWidth="350.0" showTickLabels="true" showTickMarks="true" />
+                        <Slider fx:id="Voltage" blockIncrement="1.0" layoutX="242.0" layoutY="57.0" max="125.0" minorTickCount="1" prefHeight="40.0" prefWidth="350.0" showTickLabels="true" showTickMarks="true" />
+                        <Label layoutX="15.0" layoutY="252.0" text="As the Magnetic field and velocity increase increases the Lorentz force becomes smaller" />
+                        <Label layoutX="103.0" layoutY="160.0" text="Change the Voltage or Contant magnetic field while the particle is moving after pressing start " />
+                        <Label layoutX="105.0" layoutY="139.0" text="Important : " />
+                     </children>
+                  </Pane>
+                  <Pane fx:id="graphPane" prefHeight="300.0" prefWidth="595.0">
+                     <children>
+                        <LineChart fx:id="PositionYForceChart" axisSortingPolicy="NONE" legendVisible="false" prefHeight="300.0" prefWidth="300.0" title="Position in y vs Lorentz Force">
+                           <xAxis>
+                              <NumberAxis label="Lorentz Force(N)" prefHeight="34.0" prefWidth="308.0" />
+                           </xAxis>
+                           <yAxis>
+                              <NumberAxis label="Position in Y (m)" side="LEFT" upperBound="20.0" />
+                           </yAxis>
+                        </LineChart>
+                        <LineChart fx:id="PositionYtimeChart" axisSortingPolicy="NONE" layoutX="300.0" legendVisible="false" prefHeight="300.0" prefWidth="294.0" title="Position in y vs time">
+                           <xAxis>
+                              <NumberAxis label="Time(s)" prefHeight="34.0" prefWidth="308.0" />
+                           </xAxis>
+                           <yAxis>
+                              <NumberAxis label="Position in Y (m)" side="LEFT" upperBound="20.0" />
+                           </yAxis>
+                        </LineChart>
+                     </children>
+                  </Pane>
+               </children>
+            </HBox>
+            <Pane fx:id="bottomBox" prefHeight="100.0" prefWidth="1200.0">
+               <children>
+                  <Label fx:id="messageLabel" alignment="CENTER" layoutX="6.0" layoutY="5.0" prefHeight="90.0" prefWidth="1189.0" text="Help Messages" />
+               </children>
+            </Pane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="pane" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="finalprojectyna.PhotoEffect">
+   <children>
+      <VBox fx:id="mainLayot" prefHeight="790.0" prefWidth="1192.5">
+         <children>
+            <Pane fx:id="topSimulation" prefHeight="400.0" prefWidth="1195.0">
+               <children>
+                  <Rectangle fx:id="light" arcHeight="5.0" arcWidth="5.0" fill="#99999a" height="235.0" layoutX="388.0" layoutY="43.0" opacity="0.51" rotate="53.5" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" width="75.0" />
+                  <ImageView fx:id="lamp" fitHeight="123.0" fitWidth="230.0" layoutX="401.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../assets/images/lamp.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="capacitor" fitHeight="276.0" fitWidth="950.0" layoutX="229.0" layoutY="123.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../../assets/images/capacitor.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="multimeter" fitHeight="286.0" fitWidth="204.0" layoutX="80.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../assets/images/multimeter.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="currentLabel" alignment="CENTER_RIGHT" layoutX="74.0" layoutY="56.0" prefHeight="34.0" prefWidth="121.0" text="0.00">
+                     <font>
+                        <Font name="Webdings" size="50.0" />
+                     </font>
+                  </Label>
+               </children></Pane>
+            <HBox fx:id="middleBox" prefHeight="300.0" prefWidth="1190.0">
+               <children>
+                  <Pane fx:id="inputPane" prefHeight="300.0" prefWidth="600.0">
+                     <children>
+                        <Label layoutX="31.0" layoutY="14.0" prefHeight="17.0" prefWidth="142.0" text="Light Intensity (%)" />
+                        <Slider fx:id="intensitySlider" layoutX="241.0" layoutY="12.0" prefHeight="37.0" prefWidth="241.0" showTickLabels="true" showTickMarks="true" />
+                        <Label layoutX="31.0" layoutY="61.0" prefHeight="17.0" prefWidth="180.0" text="Wavelength (100-850)nm" />
+                        <Slider fx:id="wavelengthSlider" layoutX="241.0" layoutY="61.0" majorTickUnit="50.0" max="850.0" min="100.0" minorTickCount="0" prefHeight="37.0" prefWidth="241.0" showTickLabels="true" showTickMarks="true">
+                           <cursor>
+                              <Cursor fx:constant="DEFAULT" />
+                           </cursor></Slider>
+                        <Label layoutX="33.0" layoutY="107.0" prefHeight="17.0" prefWidth="134.0" text="Voltage (-4 - 8) V" />
+                        <Label layoutX="31.0" layoutY="160.0" prefHeight="17.0" prefWidth="121.0" text="Target Material" />
+                        <ChoiceBox fx:id="materialOptions" layoutX="239.0" layoutY="156.0" prefHeight="25.0" prefWidth="241.0" />
+                        <Button fx:id="startButton" layoutX="163.0" layoutY="259.0" mnemonicParsing="false" onAction="#handlestartButton" prefHeight="25.0" prefWidth="59.0" text="Start" />
+                        <Button fx:id="pauseButton" layoutX="222.0" layoutY="259.0" mnemonicParsing="false" onAction="#handlPauseButton" prefHeight="25.0" prefWidth="59.0" text="Pause" />
+                        <Button fx:id="resetButton" layoutX="281.0" layoutY="259.0" mnemonicParsing="false" onAction="#handleResetButton" prefHeight="25.0" prefWidth="59.0" text="Reset" />
+                        <Button fx:id="helpButton" layoutX="340.0" layoutY="259.0" mnemonicParsing="false" onAction="#handleHelpButton" prefHeight="25.0" prefWidth="59.0" text="Help" />
+                        <Button fx:id="exitButton" layoutX="399.0" layoutY="259.0" mnemonicParsing="false" onAction="#handleExit" prefHeight="25.0" prefWidth="59.0" text="Exit" />
+                        <Label layoutX="34.0" layoutY="209.0" prefHeight="17.0" prefWidth="100.0" text="Type of Graph" />
+                        <ChoiceBox fx:id="graphOptions" layoutX="239.0" layoutY="205.0" prefHeight="25.0" prefWidth="241.0" />
+                        <Slider fx:id="voltageSlider" layoutX="239.0" layoutY="107.0" majorTickUnit="2.0" max="8.0" min="-4.0" prefHeight="14.0" prefWidth="241.0" showTickLabels="true" showTickMarks="true" />
+                     </children>
+                  </Pane>
+                  <Pane fx:id="graphPane" prefHeight="200.0" prefWidth="600.0">
+                     <children>
+                        <LineChart fx:id="graph" animated="false" axisSortingPolicy="NONE" legendVisible="false" prefHeight="297.0" prefWidth="597.0" title="Choose a Graph">
+                          <xAxis>
+                            <NumberAxis side="RIGHT" upperBound="20.0" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis side="TOP" upperBound="19.5" />
+                          </yAxis>
+                        </LineChart>
+                     </children></Pane>
+               </children>
+            </HBox>
+            <Pane fx:id="bottomBox" prefHeight="100.0" prefWidth="1200.0">
+               <children>
+                  <Label fx:id="messageLabel" alignment="TOP_LEFT" contentDisplay="TOP" layoutY="7.0" prefHeight="90.0" prefWidth="1193.0">
+                     <font>
+                        <Font size="11.5" />
+                     </font></Label>
+               </children></Pane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+
+<AnchorPane id="AnchorPane" fx:id="pane" prefHeight="807.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="finalprojectyna.ProjMotion">
+   <children>
+      <VBox fx:id="mainLayot" prefHeight="800.0" prefWidth="1200.0">
+         <children>
+            <Pane fx:id="topSimulation" prefHeight="400.0" prefWidth="1200.0" style="-fx-border-color: 2;">
+               <children>
+                  <ImageView fx:id="backgroundSimulation" fitHeight="400.0" fitWidth="1200.0" layoutX="-1.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../../assets/images/ProjectileBackground.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="VolcanoSimulation" cache="true" fitHeight="110.0" fitWidth="86.0" layoutY="290.0" pickOnBounds="true" smooth="false">
+                     <image>
+                        <Image url="@../../assets/images/Projectile.gif" />
+                     </image>
+                  </ImageView>
+                  <Circle fx:id="c" fill="#473333" layoutX="40.0" layoutY="390.0" radius="10.0" stroke="#e30909" strokeType="INSIDE" strokeWidth="50.0" />
+               </children>
+            </Pane>
+            <HBox fx:id="middleBox" prefHeight="300.0" prefWidth="1200.0">
+               <children>
+                  <Pane fx:id="inputPane" prefHeight="245.0" prefWidth="600.0">
+                     <children>
+                        <Label layoutX="39.0" layoutY="50.0" text="Velocity must be between 0 - 30 m/s  " />
+                        <Label layoutX="30.0" layoutY="80.0" text="angle must be between 0 - 90 degree" />
+                        <Label layoutX="16.0" layoutY="109.0" text="Initial Y position must be between 0 - 150 meter" />
+                        <TextField fx:id="VelocityInput" layoutX="332.0" layoutY="46.0" text="15" />
+                        <TextField fx:id="AngleInput" layoutX="332.0" layoutY="76.0" text="45" />
+                        <TextField fx:id="PosYinput" layoutX="332.0" layoutY="105.0" text="100" />
+                        <Label layoutX="105.0" layoutY="158.0" text="Gravity scale" />
+                        <Button fx:id="startButton" layoutX="186.0" layoutY="261.0" mnemonicParsing="false" onAction="#start" text="Start" />
+                        <Button fx:id="pauseButton" layoutX="227.0" layoutY="261.0" mnemonicParsing="false" onAction="#Stop" text="Pause" />
+                        <Button fx:id="resetButton" layoutX="271.0" layoutY="261.0" mnemonicParsing="false" onAction="#RESET" text="Reset" />
+                        <Slider fx:id="GravitySlider" blockIncrement="1.0" layoutX="186.0" layoutY="146.0" majorTickUnit="2.5" max="25.0" minorTickCount="1" prefHeight="40.0" prefWidth="350.0" showTickLabels="true" showTickMarks="true" />
+                        <Button fx:id="exitButton" layoutX="353.0" layoutY="261.0" mnemonicParsing="false" onAction="#handleExit" text="Exit" />
+                        <Button fx:id="helpButton" layoutX="312.0" layoutY="261.0" mnemonicParsing="false" onAction="#Help" prefHeight="25.0" prefWidth="41.0" text="Help" />
+                        <Button fx:id="Earth" layoutX="300.0" layoutY="178.0" mnemonicParsing="false" onAction="#Earth" text="Earth" />
+                        <Button fx:id="Mars" layoutX="221.0" layoutY="178.0" mnemonicParsing="false" onAction="#Mars" text="Mars" />
+                        <Button fx:id="Jupiter" layoutX="497.0" layoutY="178.0" mnemonicParsing="false" onAction="#Jupiter" prefHeight="20.0" prefWidth="57.0" text="Jupiter" />
+                     </children>
+                  </Pane>
+                  <Pane fx:id="graphPane" prefHeight="300.0" prefWidth="595.0">
+                     <children>
+                        <LineChart fx:id="PositionTimeChart" axisSortingPolicy="NONE" legendVisible="false" prefHeight="150.0" prefWidth="300.0" title="Position in Y Vs Time">
+                           <xAxis>
+                              <NumberAxis label="Time" prefHeight="34.0" prefWidth="308.0" />
+                           </xAxis>
+                           <yAxis>
+                              <NumberAxis label="Position(m)" side="LEFT" upperBound="20.0" />
+                           </yAxis>
+                        </LineChart>
+                        <LineChart fx:id="VelocityTimeChart" axisSortingPolicy="NONE" layoutX="295.0" legendVisible="false" prefHeight="150.0" prefWidth="300.0" title="Velocity in Y Vs Time">
+                           <xAxis>
+                              <NumberAxis label="Time" prefHeight="34.0" prefWidth="308.0" />
+                           </xAxis>
+                           <yAxis>
+                              <NumberAxis label="V(m/s)" side="LEFT" upperBound="20.0" />
+                           </yAxis>
+                        </LineChart>
+                        <LineChart fx:id="AccelerationTimeChart" axisSortingPolicy="NONE" layoutY="136.0" legendVisible="false" prefHeight="150.0" prefWidth="300.0" title="Acceleration in Y Vs Time">
+                           <xAxis>
+                              <NumberAxis label="Time" prefHeight="34.0" prefWidth="308.0" />
+                           </xAxis>
+                           <yAxis>
+                              <NumberAxis label="A(m/s^2)" prefHeight="69.0" prefWidth="43.0" side="LEFT" upperBound="20.0" />
+                           </yAxis>
+                        </LineChart>
+                        <LineChart fx:id="positionxTimeChart" axisSortingPolicy="NONE" layoutX="300.0" layoutY="136.0" legendVisible="false" prefHeight="150.0" prefWidth="300.0" title="Position in X VS Position in Y">
+                           <xAxis>
+                              <NumberAxis label="Position X" prefHeight="34.0" prefWidth="308.0" />
+                           </xAxis>
+                           <yAxis>
+                              <NumberAxis label="Position(m)" side="LEFT" upperBound="20.0" />
+                           </yAxis>
+                        </LineChart>
+                     </children></Pane>
+               </children>
+            </HBox>
+            <Pane fx:id="bottomBox" prefHeight="100.0" prefWidth="1200.0">
+               <children>
+                  <Label fx:id="messageLabel" alignment="CENTER" layoutX="5.0" prefHeight="90.0" prefWidth="1189.0" text="Help Messages" />
+               </children>
+            </Pane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
